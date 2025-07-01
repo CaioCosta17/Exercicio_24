@@ -25,7 +25,7 @@ function Funcionario(nome, sobrenome, cargo, salario) {
     }
 
     this.darAumento = function(porcentagem) {
-        if (typeof parcentagem === 'number' && porcentagem > 0) {
+        if (typeof porcentagem === 'number' && porcentagem > 0) {
             const valorAumento = 1 + (porcentagem / 100);
             _salario = _salario * valorAumento;
         };
