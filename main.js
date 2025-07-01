@@ -11,12 +11,14 @@ function Funcionario(nome, sobrenome, cargo, salario) {
     this.cargo = cargo;
     let _salario = salario;
 
+// Método para obter o salário (getter)
     this.getSalario = function() {
         return _salario;
     }
-    
+
+// Método para definir o salário (setter)
     this.setSalario = function(valor) {
-        if (typeof valor === 'number') {
+        if (typeof valor === 'number' && valor >= 0) {
             _salario = valor
             console.log(`${this.nome} ${this.sobrenome} teve seu salário atualizado para R$ ${_salario}`);
         } else {
@@ -24,6 +26,7 @@ function Funcionario(nome, sobrenome, cargo, salario) {
         }
     }
 
+// Método especifico de cada funcionário para dar aumento no salário
     this.darAumento = function(porcentagem) {
         if (typeof porcentagem === 'number' && porcentagem > 0) {
             const valorAumento = 1 + (porcentagem / 100);
@@ -42,10 +45,12 @@ function Cliente(nome, sobrenome, codigoCliente, saldoDevedor) {
     this.codigoCliente = codigoCliente;
     let _saldoDevedor = saldoDevedor;
 
+// Método para obter o saldo devedor
     this.getSaldoDevedor = function() {
         return _saldoDevedor;
     }
 
+// Método para registrar um pagemnto 
     this.registraPagamento = function(valorPago) {
         if (typeof valorPago === 'number' && valorPago > 0) {
             _saldoDevedor -= valorPago;
@@ -74,22 +79,19 @@ console.log(`Salário após setSalario: R$ ${funcionario1.getSalario()}`);
 // Instância 2: Funcionário 2
 const funcionario2 = new Funcionario('João', 'Costa', 'Gerente de Projetos', 10000);
 console.log('\n\n=== Detalhes do Funcionário 2 ===');
-console.log(funcionario2.apresentar(10));
+console.log(funcionario2.apresentar());
 funcionario2.darAumento(15);
 console.log(`Salário atual de ${funcionario2.nome}: R$ ${funcionario2.getSalario()}`);
-funcionario2.setSalario(11500);
-console.log(`Salário após setSalario: R$ ${funcionario2.getSalario()}`);
 
 // Instância 3: Cliente 1
 const cliente1 = new Cliente('Ana', 'Silva', 'C001', 500);
 console.log("\n\n=== Detalhes do Cliente 1 ===");
 console.log(cliente1.apresentar());
-cliente1.registraPagamento(150);
+cliente1.registraPagamento(50);
 console.log(`Saldo devedor atual de ${cliente1.nome}: R$ ${cliente1.getSaldoDevedor()}`);
 
-// Instância 3: Cliente 2
+// Instância 4: Cliente 2
 const cliente2 = new Cliente('Pedro', 'Henrique', 'C002', 1200);
 console.log('\n\n=== Detalhes do Cliente 2 ===');
 console.log(cliente2.apresentar());
 cliente1.registraPagamento(500);
-console.log(`Saldo devedor atual de ${cliente2.nome}: R$ ${cliente2.getSaldoDevedor()}\n\n`);
